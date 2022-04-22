@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import com.adl.ujianretrofit.model.PostLogin
+import com.adl.ujianretrofit.model.GetAbsen
 import com.adl.ujianretrofit.service.RetrofitConfig
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -17,31 +16,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupUI()
+            setupUI()
     }
+    fun setupUI(){
+        btnLogin.setOnClickListener({
+            RetrofitConfig().getLogin().getAlllogin(inputUsername.text.toString()).enqueue(object : Callback<GetAbsen> {
+                    override fun onResponse(call: Call<GetAbsen>, response: Response<GetAbsen>) {
+                        var data = response.body()?.data?.login
+                        if (response.isSuccessful) {
+                            Log.d("data", "${data}")
+                            if (data?.size == 0) {
 
-        fun setupUI() {
+                            } else {
 
-
-            btnLogin.setOnClickListener({
-                intent = Intent(this, MainMenu::class.java)
-                startActivity(intent)
-                RetrofitConfig().getLogin()
-                    .addDataLogin(inputUsername.text.toString(), inputPaswword.text.toString())
-                    .enqueue(object : Callback<PostLogin> {
-                        override fun onResponse(
-                            call: Call<PostLogin>,
-                            response: Response<PostLogin>
-                        ) {
-                            Log.d("Response",response.body().toString())
+                                var currentUser = response.body()?.data?.login?.get(0)
+                                if (currentUser?.password == inputPaswword.text.toString()) {
+                                    val intent = Intent(this@MainActivity, MainMenu::class.java)
+                                    intent.putExtra("data", currentUser)
+                                    startActivity(intent)
+                                }
+                            }
                         }
-
-                        override fun onFailure(call: Call<PostLogin>, t: Throwable) {
-                            Log.e("error request", t.localizedMessage.toString())
-                        }
-
-                    })
+                    }
+                override fun onFailure(call: Call<GetAbsen>, t: Throwable) {
+                }
             })
-        }
+        })
     }
+}
+
+
+
+
+
+
+
 

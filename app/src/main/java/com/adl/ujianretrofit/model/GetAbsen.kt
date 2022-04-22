@@ -21,30 +21,21 @@ data class GetAbsen(
 ) : Parcelable
 
 @Parcelize
-data class Data(
+data class LoginItem(
 
-	@field:SerializedName("absen")
-	val absen: List<AbsenItem?>? = null
-) : Parcelable
-
-@Parcelize
-data class AbsenItem(
-
-	@field:SerializedName("tanggalMasuk")
-	val tanggalMasuk: String? = null,
-
-	@field:SerializedName("dataFoto")
-	val dataFoto: String? = null,
-
-	@field:SerializedName("lokasi")
-	val lokasi: String? = null,
-
-	@field:SerializedName("tanggalKeluar")
-	val tanggalKeluar: String? = null,
+	@field:SerializedName("password")
+	val password: String? = null,
 
 	@field:SerializedName("id")
 	val id: String? = null,
 
 	@field:SerializedName("username")
 	val username: String? = null
+) : Parcelable
+
+@Parcelize
+data class Data(
+
+	@field:SerializedName("login")
+	val login: List<LoginItem?>? = null
 ) : Parcelable

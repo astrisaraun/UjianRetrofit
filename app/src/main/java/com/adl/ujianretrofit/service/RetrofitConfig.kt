@@ -19,7 +19,7 @@ class RetrofitConfig {
 
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.8/cicool/")
+            .baseUrl("http://192.168.1.2/cicool/")
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
