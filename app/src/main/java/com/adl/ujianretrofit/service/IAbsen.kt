@@ -13,13 +13,13 @@ interface IAbsen {
     @FormUrlEncoded
     @Headers("X-Api-Key:5DDFDB24A33EFA8718153CD092B3173D")
     @POST("api/absen/add")
-    fun addDataAbsen(
-        @Field("username") username: String,
-        @Field("password") password: String,
-        @Field("tanggalMasuk") tanggalMasuk:String,
+    fun addDataAbsenLO(
         @Field("tanggalKeluar") tanggalKeluar:String,
-        @Field("lokasi") lokasi:String
-
         ): Call<PostAbsen>
+    fun addDataAbsenCI(
+        @Field("username") username:String,
+        @Field("tanggalMasuk") tanggalMasuk:String,
+        @Field("lokasi") lokasi:String
+    )
 
 }

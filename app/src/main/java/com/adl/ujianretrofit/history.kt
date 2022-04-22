@@ -16,29 +16,29 @@ import retrofit2.Retrofit
 class history : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history)
+        setContentView(R.layout.activity_history)}}
 
-        setupUI()
-    }
-
-        fun setupUI() {
-            history.setOnClickListener {
-                RetrofitConfig().getDataAbsen().getAllAbsen().enqueue(object : Callback<GetAbsen> {
-                    override fun onResponse(
-                        call: Call<GetAbsen>,
-                        response: Response<GetAbsen>
-                    ) {
-                        Log.d("Response",response.body().toString())
-                    }
-
-                    override fun onFailure(call: Call<GetAbsen>, t: Throwable) {
-                        Log.e("error request",t.localizedMessage.toString())
-                    }
-
-
-                })
-            }
-        }
-
-
-}
+//        setupUI()
+//    }
+//
+//        fun setupUI() {
+//            history.setOnClickListener {
+//                RetrofitConfig().getDataAbsen().getAllAbsen().enqueue(object : Callback<GetAbsen> {
+//                    override fun onResponse(
+//                        call: Call<GetAbsen>,
+//                        response: Response<GetAbsen>
+//                    ) {
+//                        Log.d("Response",response.body().toString())
+//                    }
+//
+//                    override fun onFailure(call: Call<GetAbsen>, t: Throwable) {
+//                        Log.e("error request",t.localizedMessage.toString())
+//                    }
+//
+//
+//                })
+//            }
+//        }
+//
+//
+//}

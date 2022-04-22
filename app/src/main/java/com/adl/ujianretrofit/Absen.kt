@@ -5,8 +5,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import com.adl.ujianretrofit.model.PostAbsen
+import com.adl.ujianretrofit.service.RetrofitConfig
 import com.github.drjacky.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.activity_absen.*
+import javax.security.auth.callback.Callback
 
 class Absen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +35,9 @@ class Absen : AppCompatActivity() {
                     .maxResultSize(480, 800, true)
                     .createIntent()
             )
-
         })
+        btnFotoLogin.setOnClickListener {
+            RetrofitConfig().getDataAbsen().addDataAbsenCI(object : Callback<PostAbsen>)
+        }
     }
 }

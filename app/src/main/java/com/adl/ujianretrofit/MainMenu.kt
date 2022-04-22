@@ -3,8 +3,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.adl.ujianretrofit.model.GetAbsen
 import com.adl.ujianretrofit.model.PostAbsen
 import com.adl.ujianretrofit.service.RetrofitConfig
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,8 +32,7 @@ class MainMenu : AppCompatActivity() {
 
         }
         btnLogOut.setOnClickListener ({
-            RetrofitConfig().getAbsen().addDataAbsen("Astri","Astri", "1", "1", "1")
-                .enqueue(object : Callback<PostAbsen> {
+            RetrofitConfig().getDataAbsen().addDataAbsenLO(inputUsername.text.toString()).enqueue(object : Callback<PostAbsen> {
                     override fun onResponse(
                         call: Call<PostAbsen>,
                         response: Response<PostAbsen>

@@ -53,8 +53,6 @@ class LocationService : Service() {
                 if (isServiceStarted){
                 mLocation = location
                 mLocation?.let {
-                    // Log.d(TAG,"SERVICE SEDANG BERJALAN LOKASINYA ADALAH ${it?.longitude} -  ${it?.latitude} ")
-
                 }
                 }
             }
